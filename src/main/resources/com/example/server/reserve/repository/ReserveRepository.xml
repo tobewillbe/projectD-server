@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.server.reserve.repository.ReserveRepository">
+    <insert id="create">
+        INSERT INTO tbl_reserve
+        (ReserveID, CustomerID, ShowID, TotalTicket, ShowSeatID1, ShowSeatID2, ShowSeatID3, ShowSeatID4, ShowSeatID5, ShowSeatID6, ShowSeatID7, ShowSeatID8)
+        VALUES
+        (#{reserveId}, #{customerId}, #{showId}, #{totalTicket}, #{showSeatId1}, #{showSeatId2}, #{showSeatId3}, #{showSeatId4}, #{showSeatId5}, #{showSeatId6}, #{showSeatId7}, #{showSeatId8})
+    </insert>
+
+    <select id="listAll" resultType="com.example.server.reserve.entity.Reserve">
+        SELECT ReserveID, CustomerID, ShowID, TotalTicket, ShowSeatID1, ShowSeatID2, ShowSeatID3, ShowSeatID4, ShowSeatID5, ShowSeatID6, ShowSeatID7, ShowSeatID8 From tbl_reserve
+    </select>
+
+    <select id="listOutDtos" resultType="com.example.server.reserve.dto.ReserveOutDto">
+        select r.ReserveID, c.username, t.theaterName, sc.ScreenNm ,m.movieNm, sh.showTime, r.TotalTicket, se1.SeatNum AS seatnm1 , ss2.SeatID, ss3.seatID, ss4.seatID, ss5.seatID, ss6.seatID, ss7.seatID, ss8.seatID
+        FROM tbl_reserve AS r
+        INNER JOIN tbl_customer AS c on r.CustomerID = c.CustomerID
+        INNER JOIN tbl_show AS sh on r.showID = sh.ShowID
+        INNER JOIN tbl_screen As sc on sh.ScreenID = sc.ScreenID
+        INNER JOIN tbl_theater AS t on sc.TheaterID = t.TheaterID
+        INNER JOIN tbl_movie As m on sh.Moviecd = m.moviecd
+        LEFT JOIN tbl_showSeat AS ss1 on r.ShowseatID1 = ss1.showSeatID
+        INNER JOIN tbl_seat As se1 on ss1.SeatID = se1.SeatID
+        LEFT JOIN tbl_showSeat AS ss2 on r.ShowseatID2 = ss2.showSeatID
+        LEFT JOIN tbl_showSeat AS ss3 on r.ShowseatID3 = ss3.showSeatID
+        LEFT JOIN tbl_showSeat AS ss4 on r.ShowseatID4 = ss4.showSeatID
+        LEFT JOIN tbl_showSeat AS ss5 on r.ShowseatID5 = ss5.showSeatID
+        LEFT JOIN tbl_showSeat AS ss6 on r.ShowseatID6 = ss6.showSeatID
+        LEFT JOIN tbl_showSeat AS ss7 on r.ShowseatID7 = ss7.showSeatID
+        LEFT JOIN tbl_showSeat AS ss8 on r.ShowseatID8 = ss8.showSeatID
+
+    </select>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.server.show.repository.ShowRepository">
+
+    <insert id="create">
+        INSERT INTO tbl_show
+            (ShowID, MovieCd, ScreenID, ShowTime)
+        VALUES
+            (#{showId}, #{movieCd}, #{screenId}, #{showTime})
+    </insert>
+
+    <select id="showList" resultType="com.example.server.show.entity.Show">
+        SELECT ShowID, MovieCd, ScreenID, ShowTime FROM tbl_show
+    </select>
+
+    <select id="showOutDtoList" resultType="com.example.server.show.dto.ShowOutDto">
+        select sh.ShowID, t.TheaterName, sc.ScreenNm, m.movieNm, sh.showTime
+        FROM tbl_show AS sh
+        INNER JOIN tbl_screen As sc on sh.ScreenID = sc.ScreenID
+        INNER JOIN tbl_theater AS t on sc.TheaterID = t.TheaterID
+        INNER JOIN tbl_movie As m on sh.Moviecd = m.moviecd
+    </select>
+</mapper>
