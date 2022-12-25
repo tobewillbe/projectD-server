@@ -20,4 +20,5 @@ public interface ShowRepository {
 
     List<ShowOutDto> showOutDtoList();
 
+    boolean update(Show show);
 }
