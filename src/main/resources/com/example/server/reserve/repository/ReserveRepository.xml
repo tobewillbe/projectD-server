@@ -11,11 +11,18 @@
         (#{reserveId}, #{customerId}, #{showId})
     </insert>
 
+    <insert id="createSeat">
+        INSERT INTO tbl_showseat
+        (ShowSeatID, ShowID, seatId, ReserveID, SeatState)
+        VALUES
+        (#{showSeatId}, #{showId}, #{seatId}, #{reserveId}, #{setState})
+    </insert>
+
     <select id="listAll" resultType="com.example.server.reserve.entity.Reserve">
         SELECT ReserveID, CustomerID, ShowID From tbl_reserve
     </select>
 
-    <select id="listOutDtos" resultType="com.example.server.reserve.dto.ReserveOutDto">
+    <select id="listDTO" resultType="com.example.server.reserve.dto.ReserveOutDto">
         select count (*) as count, r.ReserveID, c.username, t.theaterName, sc.ScreenNm ,m.movieNm, sh.showTime, se.SeatNum
         FROM tbl_reserve AS r
         INNER JOIN tbl_customer AS c on r.CustomerID = c.CustomerID

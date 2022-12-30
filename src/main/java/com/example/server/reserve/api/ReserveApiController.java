@@ -1,6 +1,7 @@
 package com.example.server.reserve.api;
 
-import com.example.server.reserve.entity.Reserve;
+import com.example.server.reserve.dto.ReserveInDto;
+
 import com.example.server.reserve.service.ReserveService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +17,7 @@ public class ReserveApiController {
     private final ReserveService service;
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody Reserve newReserve){
+    public ResponseEntity<?> create(@RequestBody ReserveInDto newReserve){
 
         log.info("api/reserve PostRequest -{}", newReserve );
         try{
