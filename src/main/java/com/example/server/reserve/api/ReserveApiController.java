@@ -2,13 +2,9 @@ package com.example.server.reserve.api;
 
 import com.example.server.reserve.entity.Reserve;
 import com.example.server.reserve.service.ReserveService;
-import com.example.server.show.entity.Show;
-import com.example.server.show.service.ShowService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -34,12 +30,12 @@ public class ReserveApiController {
     @GetMapping
     public ResponseEntity<?> listAll(){
         log.info("api/reserve GetRequest!");
-        return ResponseEntity.ok().body(service.showListServ());
+        return ResponseEntity.ok().body(service.listAllServ());
     }
 
     @GetMapping("/nm")
-    public ResponseEntity<?> listShowOutDto(){
+    public ResponseEntity<?> listDTO(){
         log.info("api/reserve/nm GetRequest!");
-        return ResponseEntity.ok().body(service.showOutDtoListServ());
+        return ResponseEntity.ok().body(service.listDtoServ());
     }
 }

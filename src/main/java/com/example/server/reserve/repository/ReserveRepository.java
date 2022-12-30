@@ -11,5 +11,5 @@ public interface ReserveRepository {
 
     boolean create(Reserve reserve);
     List<Reserve> listAll();
-    List<ReserveOutDto> listOutDtos();
+    List<ReserveOutDto> listDTO();
 }

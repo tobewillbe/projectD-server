@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.server.payment.repository.PaymentRepository">
+
+    <insert id="create">
+        INSERT INTO tbl_payment
+        (PaymentID,ReserveID,PayMethod,CurrentStatus,PayTime)
+        VALUES
+        (paymentId, reserveId, payMethod, CurrentStatus, payTime)
+    </insert>
+
+    <select id="listAll" resultType="com.example.server.payment.entity.Payment">
+        SELECT PaymentID, ReserveID, PayMethod, CurrentStatus, PayTime From tbl_payment
+    </select>
+
+    <select id="listDTO" resultType="com.example.server.payment.dto.PaymentOutDTO">
+        select count (*) as count, p.PaymentID, c.username, t.theaterName, sc.ScreenNm ,m.movieNm, sh.showTime, se.SeatNum , p.payMethod , p.CurrentStatus, p.payTime
+        FROM tbl_payment AS p
+        INNER JOIN tbl_reserve As r on p.ReserveID = r.ReserveID
+        INNER JOIN tbl_customer AS c on r.CustomerID = c.CustomerID
+        INNER JOIN tbl_show AS sh on r.showID = sh.ShowID
+        INNER JOIN tbl_screen As sc on sh.ScreenID = sc.ScreenID
+        INNER JOIN tbl_theater AS t on sc.TheaterID = t.TheaterID
+        INNER JOIN tbl_movie As m on sh.MovieCd = m.movieCd
+        INNER JOIN tbl_showSeat AS ss on r.ReserveID = ss.ReserveID
+        INNER JOIN tbl_seat As se on ss.SeatID = se.SeatID
+    </select>
+
+    <update id="update">
+        UPDATE tbl_payment
+        SET ReservedID = #{reservedId} , CurrentStatus = #{currentStatus}, PayMethod = #{payMethod}, payTime = #{payTime}
+        WHERE ReserveID = #{reserveId}
+    </update>
+
+</mapper>
