@@ -3,6 +3,8 @@ package com.example.server.show.dto;
 import lombok.*;
 
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 @Getter @Setter @ToString
 @NoArgsConstructor
@@ -11,5 +13,6 @@ public class ShowOutDto {
     private String theaterName;
     private String MovieNm;
     private String ScreenNm;
-    private Date ShowTime;
+    private Date ShowDate;
+    private Time ShowTime;
 }

@@ -4,6 +4,8 @@ import com.example.server.show.dto.ShowOutDto;
 import com.example.server.show.entity.Show;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper
@@ -16,9 +18,9 @@ public interface ShowRepository {
      */
     boolean create(Show show);
 
-    List<Show> showList();
+    List<Show> showList(Timestamp start, Timestamp end);
 
-    List<ShowOutDto> showOutDtoList();
+    List<ShowOutDto> showOutDtoList(Timestamp start, Timestamp end);
 
     boolean update(Show show);
 }

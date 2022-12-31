@@ -12,15 +12,19 @@
             (#{showId}, #{movieCd}, #{screenId}, #{showTime})
     </insert>
 
+
     <select id="showList" resultType="com.example.server.show.entity.Show">
         SELECT ShowID, MovieCd, ScreenID, ShowTime FROM tbl_show
+        WHERE ShowTime BETWEEN #{start} AND #{end}
     </select>
 
+
     <select id="showOutDtoList" resultType="com.example.server.show.dto.ShowOutDto">
-        select sh.ShowID, t.TheaterName, sc.ScreenNm, m.movieNm, sh.showTime
+        select sh.ShowID, t.TheaterName, sc.ScreenNm, m.movieNm, sh.showTime as showDate, sh.showTime
         FROM tbl_show AS sh
         INNER JOIN tbl_screen As sc on sh.ScreenID = sc.ScreenID
         INNER JOIN tbl_theater AS t on sc.TheaterID = t.TheaterID
         INNER JOIN tbl_movie As m on sh.Moviecd = m.moviecd
+        WHERE ShowTime BETWEEN #{start} AND #{end}
     </select>
 </mapper>

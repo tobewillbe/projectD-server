@@ -7,6 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +29,21 @@ public class ShowService {
         return flag;
     }
 
-    public List<Show> showListServ(){
-        return new ArrayList<>(repository.showList());
-    }
+    public List<Show> showListServ(String date) {
+        String startStr = date+" 00:00:00";
+        String endStr = date+" 23:59:59";
+        log.info("{},{}",startStr,endStr);
+        Timestamp start = Timestamp.valueOf(startStr);
+        Timestamp end = Timestamp.valueOf(endStr);
 
-    public List<ShowOutDto> showOutDtoListServ() {return new ArrayList<>(repository.showOutDtoList());}
+        return new ArrayList<>(repository.showList(start, end));}
+
+    public List<ShowOutDto> showOutDtoListServ(String date) {
+        String startStr = date+" 00:00:00";
+        String endStr = date+" 23:59:59";
+        log.info("{},{}",startStr,endStr);
+        Timestamp start = Timestamp.valueOf(startStr);
+        Timestamp end = Timestamp.valueOf(endStr);
+
+        return new ArrayList<>(repository.showOutDtoList(start, end));}
 }

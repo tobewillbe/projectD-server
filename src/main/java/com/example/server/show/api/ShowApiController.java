@@ -28,15 +28,16 @@ public class ShowApiController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity<?> listAll(){
+
+    @GetMapping("/{date}")
+    public ResponseEntity<?> listShowOutDto(@PathVariable String date){
         log.info("api/show GetRequest!");
-        return ResponseEntity.ok().body(service.showListServ());
+        return ResponseEntity.ok().body(service.showOutDtoListServ(date));
     }
 
-    @GetMapping("/nm")
-    public ResponseEntity<?> listShowOutDto(){
+    @GetMapping("/nm/{date}")
+    public ResponseEntity<?> listAll(@PathVariable String date){
         log.info("api/show/nm GetRequest!");
-        return ResponseEntity.ok().body(service.showOutDtoListServ());
+        return ResponseEntity.ok().body(service.showListServ(date));
     }
 }
