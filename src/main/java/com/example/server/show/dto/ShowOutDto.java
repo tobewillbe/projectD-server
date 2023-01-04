@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShowOutDto {
+    private String showId;
     private String theaterName;
     private String MovieNm;
     private String ScreenNm;
