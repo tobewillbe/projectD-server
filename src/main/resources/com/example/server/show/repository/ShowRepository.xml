@@ -20,7 +20,7 @@
 
 
     <select id="showOutDtoList" resultType="com.example.server.show.dto.ShowOutDto">
-        select sh.ShowID, t.TheaterName, sc.ScreenNm, m.movieNm, sh.showTime as showDate, sh.showTime
+        select sh.ShowID, t.TheaterNm, sc.ScreenNm, m.movieNm, sh.showTime as showDate, sh.showTime
         FROM tbl_show AS sh
         INNER JOIN tbl_screen As sc on sh.ScreenID = sc.ScreenID
         INNER JOIN tbl_theater AS t on sc.TheaterID = t.TheaterID

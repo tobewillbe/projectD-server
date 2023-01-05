@@ -17,7 +17,7 @@
     </select>
 
     <select id="listDTO" resultType="com.example.server.payment.dto.PaymentOutDTO">
-        select count (*) as count, p.PaymentID, c.username, t.theaterName, sc.ScreenNm ,m.movieNm, sh.showTime, se.SeatNum , p.payMethod , p.CurrentStatus, p.payTime
+        select count (*) as count, p.PaymentID, c.username, t.theaterNm, sc.ScreenNm ,m.movieNm, sh.showTime, se.SeatNum , p.payMethod , p.CurrentStatus, p.payTime
         FROM tbl_payment AS p
         INNER JOIN tbl_reserve As r on p.ReserveID = r.ReserveID
         INNER JOIN tbl_customer AS c on r.CustomerID = c.CustomerID

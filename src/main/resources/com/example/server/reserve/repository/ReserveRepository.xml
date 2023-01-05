@@ -23,7 +23,7 @@
     </select>
 
     <select id="listDTO" resultType="com.example.server.reserve.dto.ReserveOutDto">
-        select count (*) as count, r.ReserveID, c.username, t.theaterName, sc.ScreenNm ,m.movieNm, sh.showTime, se.SeatNum
+        select count (*) as count, r.ReserveID, c.username, t.theaterNm, sc.ScreenNm ,m.movieNm, sh.showTime, se.SeatNum
         FROM tbl_reserve AS r
         INNER JOIN tbl_customer AS c on r.CustomerID = c.CustomerID
         INNER JOIN tbl_show AS sh on r.showID = sh.ShowID

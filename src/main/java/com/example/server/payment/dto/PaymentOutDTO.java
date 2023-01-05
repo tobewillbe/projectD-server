@@ -6,9 +6,8 @@ public class PaymentOutDTO {
 
     private int count;
     private String paymentId;
-
     private String username;
-    private String theaterName;
+    private String theaterNm;
     private String ScreenNm;
     private String movieNm;
     private Date showtime;

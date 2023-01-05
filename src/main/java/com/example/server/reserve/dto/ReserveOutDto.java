@@ -10,7 +10,7 @@ import java.sql.Date;
 public class ReserveOutDto {
     private String reserveId;
     private String username;
-    private String theaterName;
+    private String theaterNm;
     private String screenNm;
     private String movieNm;
     private Date showtime;
