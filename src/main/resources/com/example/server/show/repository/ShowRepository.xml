@@ -18,6 +18,27 @@
         WHERE ShowTime BETWEEN #{start} AND #{end}
     </select>
 
+    <insert id="createSeats" >
+        INSERT INTO tbl_showSeat
+            (ShowSeatID, ShowID, SeatID, ReserveID, SeatState)
+        VALUES
+            (#{showSeatId}, #{showId}, #{seatId}, #{reserveId}, #{setState})
+    </insert>
+
+    <select id="showSeatList" resultType="com.example.server.seat.entity.Seat">
+        SELECT SeatID, SeatNum, SeatState, ScreenID
+        FROM tbl_seat
+        WHERE ScreenID=#{ScreenID}
+    </select>
+
+<!--    <select id="showOutDtoList" resultType="com.example.server.show.dto.ShowOutDto">-->
+<!--        select sh.ShowID, t.TheaterNm, sc.ScreenNm, m.movieNm, sh.showTime as showDate, sh.showTime-->
+<!--        FROM tbl_show AS sh-->
+<!--        INNER JOIN tbl_screen As sc on sh.ScreenID = sc.ScreenID-->
+<!--        INNER JOIN tbl_theater AS t on sc.TheaterID = t.TheaterID-->
+<!--        INNER JOIN tbl_movie As m on sh.Moviecd = m.moviecd-->
+<!--        WHERE ShowTime BETWEEN #{start} AND #{end}-->
+<!--    </select>-->
 
     <select id="showOutDtoList" resultType="com.example.server.show.dto.ShowOutDto">
         select sh.ShowID, t.TheaterNm, sc.ScreenNm, m.movieNm, sh.showTime as showDate, sh.showTime
@@ -25,6 +46,7 @@
         INNER JOIN tbl_screen As sc on sh.ScreenID = sc.ScreenID
         INNER JOIN tbl_theater AS t on sc.TheaterID = t.TheaterID
         INNER JOIN tbl_movie As m on sh.Moviecd = m.moviecd
-        WHERE ShowTime BETWEEN #{start} AND #{end}
+        WHERE ShowTime BETWEEN #{start} AND #{end} AND sh.MovieCd = #{movie} AND t.theaterID=#{theater}
     </select>
+
 </mapper>

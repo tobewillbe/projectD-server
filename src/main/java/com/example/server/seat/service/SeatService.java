@@ -2,6 +2,7 @@ package com.example.server.seat.service;
 
 import com.example.server.seat.dto.FindAllDTO;
 import com.example.server.seat.dto.SeatDTO;
+import com.example.server.seat.dto.SeatMassInputDTO;
 import com.example.server.seat.entity.Seat;
 import com.example.server.seat.repository.SeatRepository;
 import lombok.RequiredArgsConstructor;
@@ -51,4 +52,20 @@ public class SeatService {
         return findAllServ(ScreenID);
     }
 
+    public FindAllDTO massCreateServ(SeatMassInputDTO newSeats) {
+        if (newSeats == null) {
+            log.warn("newSeat cannot be null!");
+            throw  new RuntimeException("newSeat cannot be null!");
+        }
+
+        boolean flag = false;
+        for (int i=1 ; i <= Integer.parseInt(newSeats.getRow()) ; i++ ){
+            for (int j=0; j < Integer.parseInt(newSeats.getColumn()); j++){
+                Seat seat = new Seat(newSeats, i, j);
+                flag = repository.save(seat);
+                if (flag) log.info("새로운 좌석 [Id: {}]이 저장되었습니다.", seat.getSeatID());
+            }
+        }
+        return flag ? findAllServ(newSeats.getScreenID()) : null;
+    }
 }

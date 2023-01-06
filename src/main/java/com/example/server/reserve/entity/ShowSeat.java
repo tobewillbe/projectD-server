@@ -1,6 +1,8 @@
 package com.example.server.reserve.entity;
 
 import com.example.server.reserve.dto.ReserveInDto;
+import com.example.server.seat.entity.Seat;
+import com.example.server.show.entity.Show;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,5 +26,12 @@ public class ShowSeat {
         this.reserveId = reserveDTO.getReserveId();
         this.seatId = seatId;
         this.setState = setState;
+    }
+    public ShowSeat(Seat seat, Show show){
+        this();
+        this.showId = show.getShowId();
+        this.seatId = seat.getSeatID();
+        this.reserveId = null;
+        this.setState = seat.getSeatState();
     }
 }

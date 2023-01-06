@@ -12,10 +12,10 @@
         (#{SeatID}, #{SeatNum}, #{SeatState}, #{ScreenID})
     </insert>
 
-    <select id="findAll" resultType="com.example.server.seat.entity.Seat">
+    <select id="showSeatList" resultType="com.example.server.seat.entity.Seat">
         SELECT SeatID, SeatNum, SeatState, ScreenID
         FROM tbl_seat
-        WHERE ScreenID=#{ScreenID}
+        WHERE ScreenID=#{screenID}
     </select>
 
     <select id="findOne" resultType="com.example.server.seat.entity.Seat">

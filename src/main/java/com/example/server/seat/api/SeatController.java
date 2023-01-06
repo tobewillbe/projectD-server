@@ -2,6 +2,7 @@ package com.example.server.seat.api;
 
 import com.example.server.seat.dto.FindAllDTO;
 import com.example.server.seat.dto.SeatDTO;
+import com.example.server.seat.dto.SeatMassInputDTO;
 import com.example.server.seat.entity.Seat;
 import com.example.server.seat.service.SeatService;
 import lombok.RequiredArgsConstructor;
@@ -44,6 +45,21 @@ public class SeatController {
 
         try {
             FindAllDTO dto = service.createServ(newSeat);
+            if (dto == null) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok().body(dto);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity<?> massCreate(@RequestBody SeatMassInputDTO newSeats) {
+        log.info("/api/seat POST request! - {}", newSeats.getScreenID());
+
+        try {
+            FindAllDTO dto = service.massCreateServ(newSeats);
             if (dto == null) {
                 return ResponseEntity.notFound().build();
             }

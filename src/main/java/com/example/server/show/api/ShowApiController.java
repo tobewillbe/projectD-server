@@ -2,7 +2,6 @@ package com.example.server.show.api;
 
 import com.example.server.show.entity.Show;
 import com.example.server.show.service.ShowService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -29,10 +28,16 @@ public class ShowApiController {
     }
 
 
-    @GetMapping("/{date}")
-    public ResponseEntity<?> listShowOutDto(@PathVariable String date){
+//    @GetMapping("/{date}")
+//    public ResponseEntity<?> listShowOutDto(@PathVariable String date){
+//        log.info("api/show GetRequest!");
+//        return ResponseEntity.ok().body(service.showOutDtoListServ(date));
+//    }
+
+    @GetMapping("/{date}/{movie}/{theater}")
+    public ResponseEntity<?> listShowOutDto(@PathVariable String date,@PathVariable String movie,@PathVariable String theater){
         log.info("api/show GetRequest!");
-        return ResponseEntity.ok().body(service.showOutDtoListServ(date));
+        return ResponseEntity.ok().body(service.showOutDtoListServ(date,movie,theater));
     }
 
     @GetMapping("/nm/{date}")
