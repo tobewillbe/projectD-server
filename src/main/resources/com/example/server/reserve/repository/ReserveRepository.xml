@@ -34,6 +34,14 @@
         INNER JOIN tbl_seat As se on ss.SeatID = se.SeatID
     </select>
 
+    <select id="listShowSeat" resultType="com.example.server.reserve.dto.ShowSeatDto">
+        SELECT ss.showID, ss.showSeatID, ss.SeatID, s.SeatNum, ss.seatState
+        FROM tbl_showSeat AS ss
+        INNER JOIN tbl_seat AS s on ss.seatID = s.SeatID
+        WHERE ss.ShowID = #{showId}
+        ORDER BY s.SeatNum;
+    </select>
+
     <update id="update">
         UPDATE tbl_reserve
         SET ShowID = #{showId} , CustomerID = #{customerId}

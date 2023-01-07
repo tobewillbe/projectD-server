@@ -3,6 +3,7 @@ package com.example.server.reserve.api;
 import com.example.server.reserve.dto.ReserveInDto;
 
 import com.example.server.reserve.service.ReserveService;
+import com.example.server.show.entity.Show;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -38,5 +39,11 @@ public class ReserveApiController {
     public ResponseEntity<?> listDTO(){
         log.info("api/reserve/nm GetRequest!");
         return ResponseEntity.ok().body(service.listDtoServ());
+    }
+
+    @GetMapping("/showseat/{showId}")
+    public ResponseEntity<?> listShowSeat(@PathVariable String showId){
+        log.info("api/reserve/showseat GetRequest -{}", showId);
+        return ResponseEntity.ok().body(service.listShowSeatServ(showId));
     }
 }

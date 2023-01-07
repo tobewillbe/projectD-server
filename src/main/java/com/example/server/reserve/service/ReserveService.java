@@ -2,9 +2,11 @@ package com.example.server.reserve.service;
 
 import com.example.server.reserve.dto.ReserveInDto;
 import com.example.server.reserve.dto.ReserveOutDto;
+import com.example.server.reserve.dto.ShowSeatDto;
 import com.example.server.reserve.entity.Reserve;
 import com.example.server.reserve.entity.ShowSeat;
 import com.example.server.reserve.repository.ReserveRepository;
+import com.example.server.show.entity.Show;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -40,4 +42,6 @@ public class ReserveService {
     }
 
     public List<ReserveOutDto> listDtoServ() {return new ArrayList<>(repository.listDTO());}
+
+    public List<ShowSeatDto> listShowSeatServ(String showId) {return new ArrayList<>(repository.listShowSeat(showId));}
 }
