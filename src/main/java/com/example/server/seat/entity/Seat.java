@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.text.DecimalFormat;
 import java.util.UUID;
 
 @Setter @Getter @ToString
@@ -19,9 +20,11 @@ public class Seat {
 
     public Seat(SeatMassInputDTO dto, int row, int column){
         this.SeatID = UUID.randomUUID().toString();
-        this.SeatNum = (char)(column + 65) +Integer.toString(row);
+        this.SeatNum = (char)(column + 65) +len2(row);
         this.SeatState = "0";
         this.ScreenID = dto.getScreenID();
     }
-
+    private static String len2(int n) {
+        return new DecimalFormat("00").format(n);
+    }
 }
